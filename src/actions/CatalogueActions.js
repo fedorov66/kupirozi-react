@@ -44,6 +44,14 @@ function addToShoppingCart(params) {
 	}
 }
 
+function updateShoppingCartItem(params) {
+	console.log(params);
+	return {
+		type: types.SHOPPING_CART_UPDATE_ITEM,
+		promise: axios.post('/api/shopping_cart/update', params)
+	}
+}
+
 function dropShoppingCartStatus() {
 	return {
 		type: types.SHOPPING_CART_DROP_STATUS
@@ -59,4 +67,14 @@ function shoppingCartItemsCount() {
 
 
 
-export default { getCatagories, getCategory, getCategoryPage, applyFilter, getShoppingCart, addToShoppingCart, dropShoppingCartStatus, shoppingCartItemsCount }
+export default { 
+	getCatagories, 
+	getCategory, 
+	getCategoryPage, 
+	applyFilter, 
+	getShoppingCart, 
+	addToShoppingCart, 
+	updateShoppingCartItem,
+	dropShoppingCartStatus, 
+	shoppingCartItemsCount
+}

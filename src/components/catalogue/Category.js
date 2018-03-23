@@ -46,7 +46,10 @@ class Item extends Component {
 	
 	addToCart(e) {
 		e && e.preventDefault();
-		this.props.addToCart(this.state.quantity, this.props.item.id);
+		let button = e.currentTarget;
+		button.setAttribute('disabled', true);
+		button.classList.add('running');
+		this.props.addToCart(this.state.quantity, this.props.item.id, button);
 	}
 
 	render() {
@@ -84,7 +87,10 @@ class Item extends Component {
 							<div class="arrow__down" onClick={(e) => this.handleCountMinus(e)}><img src="/assets/img/down-arrow.png" alt="Убать" /></div>
 						</div>
 					</div>
-					<button onClick={(e) => this.addToCart(e)} className="catalog__item_addToCart">Добавить в корзину</button>
+					<button onClick={(e) => this.addToCart(e)} className="ld-over catalog__item_addToCart">
+						<span>Добавить в корзину</span>
+						<div class="ld ld-ball ld-flip"></div>
+					</button>
 				</div>
 			  ) : (
 			  <button className="catalog__item_soldout" disabled="disabled">Нет в наличии</button>
@@ -116,13 +122,21 @@ class Category extends Component {
 		}
 	}
 	
-	addToCart(quantity, itemId) {
-		debugger;
+	addToCart(quantity, itemId, button) {
 		const params = {
 			item_id: itemId,
 			quantity: quantity
 		};
-		this.props.addToShoppingCart(params);
+		new Promise((resolve, reject) => {		
+			resolve(this.props.addToShoppingCart(params));
+		}).then(function(res) {
+			if (res && res.data.status === 'NOT_AVAILABLE') {
+				alert('В наличии есть ' + res.data.available + ' шт. (Вы запросили: ' + quantity + ' шт.)');
+			}
+			button.removeAttribute('disabled');
+			button.classList.remove('running')
+		});
+		
 	}
 	
 	changePage(pageIndex) {
@@ -170,7 +184,7 @@ let mapDispatchToProps = (dispatch) => {
 			dispatch(CatalogueActions.getCategoryPage(pageIndex));
 		},
 		addToShoppingCart: (params) => {
-			dispatch(CatalogueActions.addToShoppingCart(params));
+			return dispatch(CatalogueActions.addToShoppingCart(params));
 		},
 		dropShoppingCartStatus: () => {
 			dispatch(CatalogueActions.dropShoppingCartStatus());

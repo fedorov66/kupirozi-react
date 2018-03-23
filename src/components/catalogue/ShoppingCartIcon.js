@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import CatalogueActions from '../../actions/CatalogueActions';
 import ShoppingCartItem from './ShoppingCartItem';
 import classNames from 'classnames/bind';
+import { Link } from 'react-router-dom';
 
 class ShoppingCartIcon extends Component {
 	
@@ -13,7 +14,9 @@ class ShoppingCartIcon extends Component {
 	componentDidMount() {
 		this.props.countItems();
 	}
-
+	
+	goToCart(event) {
+	}
 
 	render() {
 		const itemsCount = this.props.shoppingCart.count;
@@ -22,9 +25,11 @@ class ShoppingCartIcon extends Component {
 			'empty' : itemsCount === 0
 		});
 		return (
-			<div className={cartClasses}>
-				<div className="shopping-cart_icon__counter">{itemsCount}</div>
-			</div>
+			<Link to="/shoppingcart">
+				<div className={cartClasses}>
+					<div className="shopping-cart_icon__counter">{itemsCount}</div>
+				</div>
+			</Link>
 		);
 	}
 

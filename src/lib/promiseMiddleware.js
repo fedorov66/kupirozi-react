@@ -10,7 +10,7 @@ export default function promiseMiddleware() {
     next({ ...rest, type: REQUEST });
     return promise.then(res => {
         next({ ...rest, res, type: SUCCESS });
-        return true;
+        return res;
       })
       .catch(error => {
         next({ ...rest, error, type: FAILURE });
