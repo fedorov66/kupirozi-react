@@ -3,6 +3,65 @@ import {connect} from 'react-redux';
 import CatalogueActions from '../../actions/CatalogueActions';
 import ShoppingCartItem from './ShoppingCartItem';
 
+
+function ContactData() {
+	return (
+	<div className="shopping-cart__order">
+		<h3>Оформление заказа</h3>
+		<strong>Введите ваши контактные данные:</strong>
+		<div className="shopping-cart__order-contact">
+			<div className="contact-form__field">
+				<div className="contact-form__field-cell">
+					<label>Фамилия имя отчество (полностью)</label>
+				</div>
+				<div className="contact-form__field-cell">
+					<input type="text" name="fullName" className="text-field" value="" />
+				</div>
+			</div>
+			<div className="contact-form__field">
+				<div className="contact-form__field-cell">
+					<label>Email</label>
+				</div>
+				<div className="contact-form__field-cell">
+					<input type="text" name="email" className="text-field" value="" />
+				</div>
+			</div>
+			<div className="contact-form__field">
+				<div className="contact-form__field-cell">
+					<label>Телефон</label>
+				</div>
+				<div className="contact-form__field-cell">
+					<input type="text" name="phone" className="text-field" value="" />
+				</div>
+			</div>
+			<div className="contact-form__field">
+				<div className="contact-form__field-cell">
+					<label>Почтовый адрес</label>
+				</div>
+				<div className="contact-form__field-cell">
+					<input type="text" name="postAddress" className="text-field" value="" />
+				</div>
+			</div>
+			<div className="contact-form__field">
+				<div className="contact-form__field-cell">
+					<label>Комментарии</label>
+				</div>
+				<div className="contact-form__field-cell">
+					<textarea className="textarea-field" name="comment"></textarea>
+				</div>
+			</div>
+			<div className="contact-form__field">
+				<div className=""></div>
+			</div>
+		</div>
+		<button onClick={(e) => this.addToCart(e)} className="ld-over button-standart" disabled>
+			<span>Оформить заказа</span>
+			<div class="ld ld-ball ld-flip"></div>
+		</button>		
+	</div>
+	);
+}
+
 class ShoppingCart extends Component {
 	
 	constructor(props) {
@@ -33,21 +92,7 @@ class ShoppingCart extends Component {
 						<h3>Содержимое корзины</h3>
 						{items}
 					</div>				
-					<div className="shopping-cart__order">
-						<h3>Оформление заказа</h3>
-						<strong>Введите ваши контактные данные:</strong>
-						<div className="shopping-cart__order-contact">
-							<div className="contact-form__field">
-								<div className="contact-form__field-cell">
-									<label>Фамилия имя отчество (полностью)</label>
-								</div>
-								<div className="contact-form__field-cell">
-									<input type="text" name="fullName" class="text-field" value="" />
-								</div>
-							</div>
-						</div>
-						
-					</div>
+					<ContactData parent={this} />
 				</div>
 			</div>
 		);
