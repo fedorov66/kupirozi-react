@@ -1,6 +1,5 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {Link} from 'react-router-dom';
 import CatalogueActions from '../../actions/CatalogueActions';
 
 function CatagoriesList(props) {
@@ -14,6 +13,7 @@ function CatagoriesList(props) {
 
 function Category(props) {
 	const category = props.category;
+	const description = new DOMParser().parseFromString(category.description, "text/html").documentElement.textContent;
 	return (
 	 <div className="catalog__category">
 		<div className="category_container">
@@ -22,7 +22,7 @@ function Category(props) {
 			</div>
 			<div className="category_container__descr">
 			  <a href={"/#!/catalogue/" + category.id}>{category.name}</a>
-				{category.description}
+				{description}
 			</div>
 		</div>
 	</div>

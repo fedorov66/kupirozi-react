@@ -6,7 +6,7 @@ class Header extends Component {
     return (
 		<header className="header">
 			<div className="logo_container">
-				  {/* <img src="/assets/img/logo_n.png" alt="logo" />*/}
+				  <img src="/assets/img/logo_n.png" alt="logo" />
 			</div>
 			<div className="search_panel"></div>
 			<div className="control_panel">

@@ -42,7 +42,7 @@ class FilterCheckbox extends Component {
 	render() {
 		return (
 			<div className="filter">
-				<input type="checkbox" name={"filter-" + this.props.name} checked={this.state.checked} onChange={this.applyFilter} value="true" /> - <span>{this.props.caption}</span>
+				<input type="checkbox" id={"filter-" + this.props.name} name={"filter-" + this.props.name} checked={this.state.checked} onChange={this.applyFilter} value="true" /> <label for={"filter-" + this.props.name}>{this.props.caption}</label>
 			</div>
 		);
 	}

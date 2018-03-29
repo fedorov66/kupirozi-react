@@ -18,18 +18,18 @@ class App extends Component {
 	}
 	
 	render() {
-		return (
-		<Layout>
+		return (		
 			<Switch>
-				<Route exact path='/' component={Categories} />
-				<Route exact path='/catalogue' component={Categories} />
-				<Route exact path='/catalogue/:catId'  component={Category} />
-				<Route exact path='/catalogue/:catId/page/:pageIndex'  component={Category} />
-				<Route exact path='/catalogue/:catId/:id'  component={Item} />
-				<Route exact path='/shoppingcart'  component={ShoppingCart} />
-				<Route exact path='/page/:pageName' component={TextPage} />
+				<Layout parent={this}>
+					<Route exact path='/' component={Categories} />
+					<Route exact path='/catalogue' component={Categories} />
+					<Route exact path='/catalogue/:catId'  component={Category} />
+					<Route exact path='/catalogue/:catId/page/:pageIndex'  component={Category} />
+					<Route exact path='/catalogue/:catId/:id'  component={Item} />
+					<Route exact path='/shoppingcart'  component={ShoppingCart} />
+					<Route exact path='/page/:pageName' component={TextPage} />
+				</Layout>
 			</Switch>
-		</Layout>
 		);
 	}
 }
