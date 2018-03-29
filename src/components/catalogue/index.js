@@ -6,6 +6,7 @@ export { default as Controls } from './Controls';
 export { default as FiltersGroup } from './FiltersGroup';
 export { default as Filter } from './Filter';
 export { default as FilterCheckbox } from './FilterCheckbox';
+export { default as FilterSelect } from './FilterSelect';
 export { default as ShoppingCart } from './ShoppingCart';
 export { default as ShoppingCartItem } from './ShoppingCartItem';
 export { default as ShoppingCartIcon } from './ShoppingCartIcon';

@@ -10,18 +10,18 @@ class Layout extends Component {
 	}
 	
   render() {
-return (
-	<div id="app" className="wrapper">
-		<Header/>
-		<aside className="aside aside-1">
-			<LeftMenu />
-		</aside>
-		<article className="main">
-			{this.props.children}
-		</article>			
-		<Footer/>
-	</div>
-    );
+	return (
+		<div id="app" className="wrapper">
+			<Header/>
+			<aside className="aside aside-1">
+				<LeftMenu router={this.props} />
+			</aside>
+			<article className="main">
+				{this.props.children}
+			</article>			
+			<Footer/>
+		</div>
+		);
   }
 }
 

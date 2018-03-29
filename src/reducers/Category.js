@@ -6,6 +6,7 @@ const initialState = {
 	filteredItems : [],
 	items: [],
 	filters: {},
+	sortBy: 'PRICE',
 	loaded: false
 };
 
@@ -38,6 +39,26 @@ const applyFilters = (state, pageIndex) => {
 		});				
 		return include;
 	});
+	
+	if (state.sortBy != null) {
+		filteredItems = filteredItems.sort(function(a, b) {
+			let result = 0;
+			switch (state.sortBy) {
+				case 'ITEM_NAME':
+					if (a.nameRu > b.nameRu) {
+						result = 1;
+					} else {
+						result = (a.nameRu < b.nameRu ? -1 : 0);
+					}
+					break;
+				default:
+					console.log('price');
+					result = Number(a.price) - Number(b.price);
+					break;
+			}
+			return result;
+		}.bind(this));
+	}
 
 	const pagination = getPaginationData(filteredItems.length, pageIndex);
 	
@@ -55,7 +76,7 @@ export default function doAction(state = initialState, action) {
 	const pageIndex = action.pageIndex != null ? action.pageIndex : 0;
 	
 	switch (action.type) {
-
+		
 		case types.CATEGORY_GET_PAGE_DATA:		
 			return state = applyFilters(state, pageIndex);
 		
@@ -66,6 +87,10 @@ export default function doAction(state = initialState, action) {
 			
 		case types.CATEGORY_APPLY_FILTER:
 			state.filters[action.filter.name] = action.filter;
+			return state = applyFilters(state, pageIndex);
+
+		case types.CATEGORY_SORT_BY:
+			state.sortBy = action.sortBy;
 			return state = applyFilters(state, pageIndex);
 			
 		default:

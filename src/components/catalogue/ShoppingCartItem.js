@@ -6,6 +6,10 @@ class ShoppingCartItem extends Component {
 	
 	constructor(props) {
 		super(props);
+		
+		this.changeCountValue = this.changeCountValue.bind(this);
+		this.changeTimer = null;
+		
 		this.state = {
 			item_id : props.item.id,
 			quantity : parseInt(props.item.quantity, 10),
@@ -54,15 +58,19 @@ class ShoppingCartItem extends Component {
 	}
 	
 	changeCountValue(e) {
-		const value = parseInt(e.currentTarget.value, 10);
+		const currentTarget = e.currentTarget;
+		const value = parseInt(currentTarget.value, 10);
 		if (Number.isInteger(value) && value >= 0) {
 				this.setState(Object.assign(this.state, {
-				quantity : e.currentTarget.value,
+				quantity : currentTarget.value,
 				changed : true,
 			}));
-			this.props.parent.updateChangesItems();
+			clearTimeout(this.changeTimer);
+			this.changeTimer = setTimeout(function() {
+				let container = this.getParentWithClass(currentTarget, 'shopping-cart__item-quantity');
+				this.sendRequest(this.state, container);
+			}.bind(this), 1000);
 		}
-		return true;
 	}
 	
 	sendRequest(state, container) {
@@ -83,12 +91,12 @@ class ShoppingCartItem extends Component {
 			<div className="shopping-cart__item">
 				<div className="shopping-cart__item-name">{this.props.item.name}</div>
 				<div className="shopping-cart__item-quantity ld-over">
-					<input type="text" name="quantity" autocomplete="off" onBlur={(e) => this.changeCountValue(e) } value={this.props.item.quantity} />
+					<input type="text" name="quantity" autoComplete="off" onChange={this.changeCountValue} value={this.props.item.quantity} />
 					<div className="arrows__container">
 						<div className="arrow__up" onClick={(e) => this.handleCountPlus(e)}><img src="/assets/img/up-arrow.png" alt="Добавить" /></div>
 						<div className="arrow__down" onClick={(e) => this.handleCountMinus(e)}><img src="/assets/img/down-arrow.png" alt="Убать" /></div>
 					</div>
-					<div class="ld ld-pie ld-flip"></div>
+					<div className="ld ld-pie ld-flip"></div>
 				</div>
 				<div className="shopping-cart__item-price">
 					<span>{this.props.item.price} ₽ / шт.</span>

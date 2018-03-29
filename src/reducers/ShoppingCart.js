@@ -6,6 +6,7 @@ const initialState = {
 	actionStatus: {},
 	count: 0,
 	loaded: false,
+	checkOutResult: {},
 };
 
 const Helper = {
@@ -58,6 +59,12 @@ export default function doAction(state = initialState, action) {
 					itemId: action.res.data.itemId
 				},
 				count : Helper.countItems(action.res.data.shoppingCart.items) 
+			});
+		}
+		
+		case types.SHOPPING_CHECKOUT: {
+			return Object.assign({}, state, {
+				checkOutResult: action.res.data
 			});
 		}
 

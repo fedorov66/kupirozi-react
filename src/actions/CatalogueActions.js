@@ -30,10 +30,24 @@ function applyFilter(filter) {
 	}
 }
 
+function sortBy(sortBy) {
+	return {
+		type: types.CATEGORY_SORT_BY,
+		sortBy: sortBy
+	}
+}
+
 function getShoppingCart() {
 	return {
 		type: types.SHOPPING_CART_GET,
 		promise: axios.get('/api/shopping_cart')
+	}
+}
+
+function checkOutShoppingCart(params) {
+	return {
+		type: types.SHOPPING_CHECKOUT,
+		promise: axios.post('/api/shopping_cart/checkout', params)
 	}
 }
 
@@ -68,6 +82,7 @@ function shoppingCartItemsCount() {
 
 
 export default { 
+	sortBy,
 	getCatagories, 
 	getCategory, 
 	getCategoryPage, 
@@ -76,5 +91,6 @@ export default {
 	addToShoppingCart, 
 	updateShoppingCartItem,
 	dropShoppingCartStatus, 
-	shoppingCartItemsCount
+	shoppingCartItemsCount,
+	checkOutShoppingCart
 }

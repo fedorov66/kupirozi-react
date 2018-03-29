@@ -1,7 +1,7 @@
 ﻿import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import CatalogueActions from '../../actions/CatalogueActions';
-import {Pagination, Controls, FiltersGroup, FilterCheckbox, ItemImages} from '../catalogue';
+import {Pagination, Controls, FiltersGroup, FilterCheckbox, FilterSelect, ItemImages} from '../catalogue';
 import {Link} from 'react-router-dom';
 import classNames from 'classnames/bind';
 import axios from 'axios';
@@ -67,7 +67,7 @@ class Item extends Component {
 		  <div className="catalog__category catalog_category__item">
 			<div className={itemClasses}>
 			  <div className="category_container__image thumbnail">
-			  {/*<ItemImages images={item.images} caption={item.nameRu} />*/}
+				<ItemImages images={item.images} caption={item.nameRu} />
 			  </div>
 			  <div className="catalog__item_descr">
 				<div className="item__name">
@@ -150,6 +150,7 @@ class Category extends Component {
 					<Controls>
 						<FiltersGroup>
 							<FilterCheckbox name="AVAILABILITY" caption="Только в наличии" />
+							<FilterSelect name="SORT" caption="Сортировать" />
 						</FiltersGroup>
 						<Pagination changePage={this.changePage} categoryLink={'/catalogue/' + this.props.match.params.catId + '/page/'} parent={this} />
 					</Controls>

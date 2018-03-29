@@ -5,7 +5,7 @@ import axios from 'axios';
 
 function MenuList(props) {
 	const listItems = props.items.map((item) =>
-		<MenuItem key={item.uri} item={item} />
+		<MenuItem key={item.uri} current={(props.currentPath === item.uri || props.currentPath.indexOf(item.uri) > -1)} item={item} />
 	);
 	return (<div className="leftmenu">{listItems}</div>);
 }
@@ -14,7 +14,8 @@ function MenuItem(props) {
 	const item = props.item;
 	var itemClasses = classNames({
       'leftmenu__item': true,
-      'important': item.important
+      'important': item.important,
+	  'current': props.current
     });
 	return	(<div className={itemClasses}>
 		<Link to={item.uri}>{item.name}</Link>
@@ -39,9 +40,10 @@ class LeftMenu extends Component {
 	}
 
 	render() {
+		const currentPath = this.props.router.location.pathname;
 		if (this.state.data != null) {
 			return (
-				<MenuList items={this.state.data}></MenuList>
+				<MenuList currentPath={currentPath} items={this.state.data}></MenuList>
 			);			
 		} else {
 			return (<div>loading...</div>);
