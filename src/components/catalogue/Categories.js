@@ -30,6 +30,10 @@ function Category(props) {
 }
 
 class Categories extends React.Component {
+
+	constructor(props) {
+		super(props);
+	}
 	
 	componentDidMount() {
 		this.props.getCatagories();

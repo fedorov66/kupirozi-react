@@ -61,7 +61,6 @@ const applyFilters = (state, pageIndex) => {
 	}
 
 	const pagination = getPaginationData(filteredItems.length, pageIndex);
-	
 	return Object.assign({}, state, {
 		filteredItems: filteredItems,
 		items: filteredItems.slice(pagination.offset, pagination.limit),

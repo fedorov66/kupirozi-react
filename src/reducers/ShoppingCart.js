@@ -52,6 +52,7 @@ export default function doAction(state = initialState, action) {
 			});
 		
 		case types.SHOPPING_CART_UPDATE_ITEM: {
+			
 			return state = Object.assign({}, state, { 
 				items : action.res.data.shoppingCart.items,
 				actionStatus : {
@@ -60,6 +61,7 @@ export default function doAction(state = initialState, action) {
 				},
 				count : Helper.countItems(action.res.data.shoppingCart.items) 
 			});
+
 		}
 		
 		case types.SHOPPING_CHECKOUT: {

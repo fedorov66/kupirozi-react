@@ -1,20 +1,19 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router';
 import LeftMenu from '../navigation/LeftMenu.js';
 import Header from './Header.js';
 import Footer from './Footer.js';
 import {ShoppingCart} from '../catalogue/';
 
+
 class Layout extends Component {
-	constructor(props) {
-		super(props);
-	}
-	
+
   render() {
 	return (
 		<div id="app" className="wrapper">
 			<Header/>
 			<aside className="aside aside-1">
-				<LeftMenu router={this.props} />
+				<LeftMenu />
 			</aside>
 			<article className="main">
 				{this.props.children}
@@ -25,4 +24,4 @@ class Layout extends Component {
   }
 }
 
-export default Layout;
+export default withRouter(Layout);
