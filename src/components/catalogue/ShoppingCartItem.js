@@ -88,7 +88,7 @@ class ShoppingCartItem extends Component {
 	render() {
 		const notAvailable = this.props.status === 'NOT_AVAILABLE';
 		return (
-			<div className="shopping-cart__item">
+			<div className="shopping-cart__item">{Date()}
 				<div className="shopping-cart__item-name">{this.props.item.name}</div>
 				<div className="shopping-cart__item-quantity ld-over">
 					<input type="text" name="quantity" autoComplete="off" onChange={this.changeCountValue} value={this.props.item.quantity} />

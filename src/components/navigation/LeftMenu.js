@@ -1,11 +1,12 @@
 ﻿import React, { Component } from 'react';
-import {Link} from 'react-router-dom';
+import { withRouter } from 'react-router';
+import {NavLink} from 'react-router-dom';
 import classNames from 'classnames/bind';
 import axios from 'axios';
 
 function MenuList(props) {
 	const listItems = props.items.map((item) =>
-		<MenuItem key={item.uri} current={(props.currentPath === item.uri || props.currentPath.indexOf(item.uri) > -1)} item={item} />
+		<MenuItem key={item.uri} item={item} />
 	);
 	return (<div className="leftmenu">{listItems}</div>);
 }
@@ -15,10 +16,9 @@ function MenuItem(props) {
 	var itemClasses = classNames({
       'leftmenu__item': true,
       'important': item.important,
-	  'current': props.current
     });
 	return	(<div className={itemClasses}>
-		<Link to={item.uri}>{item.name}</Link>
+		<NavLink to={item.uri} activeClassName="current">{item.name}</NavLink>
 	</div>);
 }
 
@@ -40,10 +40,9 @@ class LeftMenu extends Component {
 	}
 
 	render() {
-		const currentPath = this.props.router.location.pathname;
 		if (this.state.data != null) {
 			return (
-				<MenuList currentPath={currentPath} items={this.state.data}></MenuList>
+				<MenuList items={this.state.data}></MenuList>
 			);			
 		} else {
 			return (<div>loading...</div>);
@@ -51,4 +50,4 @@ class LeftMenu extends Component {
 	}
 }
 
-export default LeftMenu;
+export default withRouter(LeftMenu);

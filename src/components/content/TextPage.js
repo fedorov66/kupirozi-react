@@ -1,5 +1,6 @@
 ﻿import React, { Component } from 'react';
 import {connect} from 'react-redux';
+import { withRouter } from 'react-router';
 import SiteActions from '../../actions/SiteActions';
 
 class TextPage extends Component {	
@@ -36,6 +37,7 @@ class TextPage extends Component {
 	}
 
 	render() {
+		debugger;
 		if (!this.props.textPage.loaded) {
 			return (<div>Загрузка</div>);
 		}
@@ -61,4 +63,4 @@ let mapDispatchToProps = (dispatch) => {
     }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(TextPage);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(TextPage));
