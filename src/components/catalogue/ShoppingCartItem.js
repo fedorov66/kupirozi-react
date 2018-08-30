@@ -2,29 +2,29 @@
 import {connect} from 'react-redux';
 import CatalogueActions from '../../actions/CatalogueActions';
 
-class ShoppingCartItem extends Component {	
-	
+class ShoppingCartItem extends Component {
+
 	constructor(props) {
 		super(props);
-		
+
 		this.changeCountValue = this.changeCountValue.bind(this);
 		this.changeTimer = null;
-		
+
 		this.state = {
 			item_id : props.item.id,
 			quantity : parseInt(props.item.quantity, 10),
 			changed : false,
 		};
 	}
-	
+
 	hasClass(elm, className) {
 		return (elm != null && elm.classList.contains(className));
 	}
-	
+
 	getParent(elm) {
 		return ((elm.parentElement) ? elm.parentElement : ((elm.parentNode) ? elm.parentNode : null));
 	}
-	
+
 	getParentWithClass(elm, className) {
 		let findNext = true;
 		while (findNext) {
@@ -40,7 +40,7 @@ class ShoppingCartItem extends Component {
 		}
 		return null;
 	}
-	
+
 	handleCountPlus(e) {
 		if (Number.isInteger(this.state.quantity)) {
 			let container = this.getParentWithClass(e.currentTarget, 'shopping-cart__item-quantity');
@@ -48,7 +48,7 @@ class ShoppingCartItem extends Component {
 			this.sendRequest(this.state, container);
 		}
 	}
-	
+
 	handleCountMinus(e) {
 		if (Number.isInteger(this.state.quantity) && this.state.quantity > 0) {
 			let container = this.getParentWithClass(e.currentTarget, 'shopping-cart__item-quantity');
@@ -56,7 +56,7 @@ class ShoppingCartItem extends Component {
 			this.sendRequest(this.state, container);
 		}
 	}
-	
+
 	changeCountValue(e) {
 		const currentTarget = e.currentTarget;
 		const value = parseInt(currentTarget.value, 10);
@@ -72,7 +72,7 @@ class ShoppingCartItem extends Component {
 			}.bind(this), 1000);
 		}
 	}
-	
+
 	sendRequest(state, container) {
 		container.classList.add('running');
 		new Promise((resolve, reject) => {
@@ -88,7 +88,7 @@ class ShoppingCartItem extends Component {
 	render() {
 		const notAvailable = this.props.status === 'NOT_AVAILABLE';
 		return (
-			<div className="shopping-cart__item">{Date()}
+			<div className="shopping-cart__item">
 				<div className="shopping-cart__item-name">{this.props.item.name}</div>
 				<div className="shopping-cart__item-quantity ld-over">
 					<input type="text" name="quantity" autoComplete="off" onChange={this.changeCountValue} value={this.props.item.quantity} />

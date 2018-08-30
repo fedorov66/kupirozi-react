@@ -2,9 +2,10 @@
 import {connect} from 'react-redux';
 import CatalogueActions from '../../actions/CatalogueActions';
 import {reactLocalStorage} from 'reactjs-localstorage';
+import Input from '../controls/Input';
 
 class ShoppingCartContactData extends Component {
-	
+
 	constructor(props) {
 		super(props);
 		this.STORAGE_KEY = '__shoppingCartContactDtata__state';
@@ -15,16 +16,16 @@ class ShoppingCartContactData extends Component {
 			postAddress: '',
 			comment: '',
 		};
-		const savedState = reactLocalStorage.get(this.STORAGE_KEY, defaultState);
-		this.state = savedState != null ? JSON.parse(savedState) : defaultState;
+		const savedState = reactLocalStorage.get(this.STORAGE_KEY, null);
+		this.state = savedState != null && typeof(savedState) === 'string' ? JSON.parse(savedState) : defaultState;
 		this.handleChange = this.handleChange.bind(this);
 		this.checkOut = this.checkOut.bind(this);
 	}
-	
+
 	checkOut(e) {
 		this.props.parent.checkOut(this.state);
 	}
-	
+
 	handleChange(e) {
 		let value = {};
 		value[e.currentTarget.name] = e.currentTarget.value;
@@ -34,6 +35,8 @@ class ShoppingCartContactData extends Component {
 	}
 
 	render() {
+		const checkOutResult = this.props.parent.props.shoppingCart.checkOutResult;
+		const validation = checkOutResult.validationParameters;
 		return (
 			<div className="shopping-cart__order">
 				<h3>Оформление заказа</h3>
@@ -44,7 +47,7 @@ class ShoppingCartContactData extends Component {
 							<label>Фамилия имя отчество (полностью)</label>
 						</div>
 						<div className="contact-form__field-cell">
-							<input type="text" name="fullName" className="text-field" onChange={this.handleChange} value={this.state.fullName} />
+							<Input validation={validation} name="fullName" onChange={this.handleChange} value={this.state.fullName} />
 						</div>
 					</div>
 					<div className="contact-form__field">
@@ -52,7 +55,7 @@ class ShoppingCartContactData extends Component {
 							<label>Email</label>
 						</div>
 						<div className="contact-form__field-cell">
-							<input type="text" name="email" className="text-field" onChange={this.handleChange} value={this.state.email} />
+							<Input validation={validation} name="email" onChange={this.handleChange} value={this.state.email} />
 						</div>
 					</div>
 					<div className="contact-form__field">
@@ -60,7 +63,7 @@ class ShoppingCartContactData extends Component {
 							<label>Телефон</label>
 						</div>
 						<div className="contact-form__field-cell">
-							<input type="text" name="phone" className="text-field" onChange={this.handleChange} value={this.state.phone} />
+							<Input validation={validation} name="phone" onChange={this.handleChange} value={this.state.phone} />
 						</div>
 					</div>
 					<div className="contact-form__field">
@@ -68,7 +71,7 @@ class ShoppingCartContactData extends Component {
 							<label>Почтовый адрес</label>
 						</div>
 						<div className="contact-form__field-cell">
-							<input type="text" name="postAddress" className="text-field" onChange={this.handleChange} value={this.state.postAddress} />
+							<Input validation={validation} name="postAddress" onChange={this.handleChange} value={this.state.postAddress} />
 						</div>
 					</div>
 					<div className="contact-form__field">
@@ -86,7 +89,7 @@ class ShoppingCartContactData extends Component {
 				<button onClick={this.checkOut} className="ld-over button-standart">
 					<span>Оформить заказа</span>
 					<div className="ld ld-ball ld-flip"></div>
-				</button>		
+				</button>
 			</div>
 		);
 	}
@@ -99,10 +102,9 @@ let mapStateToProps = function(state){
 
 let mapDispatchToProps = (dispatch) => {
     return {
-		getShoppingCart: () => {
-			dispatch(CatalogueActions.getShoppingCart());
-			debugger;
-		}
+			getShoppingCart: () => {
+				dispatch(CatalogueActions.getShoppingCart());
+			}
     }
 };
 

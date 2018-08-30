@@ -10,7 +10,7 @@ input.text-field,
 textarea.textarea-field {
 	padding: 4px 10px 6px;
     outline: 2px solid transparent;
-    border: 1px solid #c5c5c5;	
+    border: 1px solid #c5c5c5;
 }
 
 .logo_container {
@@ -138,7 +138,7 @@ textarea.textarea-field {
   .leftmenu .leftmenu__item {
     padding: 12px 5px 12px 12px;
   }
-  
+
 	.leftmenu {
 	  flex-flow: row;
 	}
@@ -386,7 +386,7 @@ textarea.textarea-field {
 }
 
 .catalog_controls .catalog_controls__pagenation .pagenation__page:hover {
-	background: #dcf9d6;	
+	background: #dcf9d6;
 }
 
 
@@ -404,7 +404,7 @@ textarea.textarea-field {
 }
 
 .item-images {
-	cursor:pointer;	
+	cursor:pointer;
 }
 
 .header .control_panel {
@@ -412,7 +412,7 @@ textarea.textarea-field {
 }
 
 .text-page_container * {
-	font-family: Helvetica, Arial, sans-serif !important;	
+	font-family: Helvetica, Arial, sans-serif !important;
 }
 
 .text-page_container table {
@@ -455,7 +455,7 @@ textarea.textarea-field {
 	color: #999;
 }
 
-    
+
 .catalog_item_container .catalog_item_details .item-parameters {
 	list-style: none;
 	margin-bottom: 1.4em;
@@ -559,7 +559,7 @@ textarea.textarea-field {
 .shopping-cart__item {
 	display: flex;
     flex-direction: row;
-	
+
 }
 
 .shopping-cart__item-name, .shopping-cart__item-price, .shopping-cart__item-quantity {
@@ -634,36 +634,34 @@ textarea.textarea-field {
 }
 
 
-
-
 @media all and (min-width: 576px) {
 
 	.aside-1 {
 		order: 3;
 		flex: 1 100%;
 	}
-	
+
 	.main {
 		flex: 5 0px;
 		order: 2;
 	}
-	
+
 	.footer {
 		order: 10;
 	}
-	
+
 	.leftmenu {
 		flex-flow: column;
 	}
-	
+
 	.ytblock {
 		display: block;
 	}
-	
+
 	.main .catalog .catalog__category {
 		flex-basis: 45%;
 	}
-  	
+
 }
 
 
@@ -672,24 +670,24 @@ textarea.textarea-field {
 		order: 1;
 		flex: 1 100%;
 	}
-	
+
 	.main {
 		flex: 5 0px;
 		order: 2;
 	}
-	
+
 	.leftmenu {
 		flex-flow: row;
 	}
-	
+
 	.footer {
 		order: 10;
 	}
-	
+
 	.main .catalog .catalog__category {
 		flex-basis: 20%;
 	}
-	
+
 }
 
 
@@ -773,4 +771,18 @@ label:hover:before {
 
 .filters-group .filter:first-child {
 	margin-right: 30px;
+}
+
+
+.validation-success {
+  border: 1px solid green !important;
+}
+
+.validation-error {
+  border: 1px solid red !important;
+}
+
+.warning-text {
+  font-weight: bold;
+  color: #d6685a;
 }

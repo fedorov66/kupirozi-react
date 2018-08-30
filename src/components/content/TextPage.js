@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import { withRouter } from 'react-router';
 import SiteActions from '../../actions/SiteActions';
 
-class TextPage extends Component {	
+class TextPage extends Component {
 
 	constructor(props) {
 		super(props);
@@ -11,7 +11,7 @@ class TextPage extends Component {
 			uri: null
 		};
 	}
-	
+
 	loadPageIfNeeded() {
 		const uri = this.props.match.params.pageName;
 		if (this.state.uri !== uri) {
@@ -23,11 +23,11 @@ class TextPage extends Component {
 			this.props.getPageData(uri);
 		}
 	}
-	
+
 	componentDidUpdate(prevProps, prevState) {
 		this.loadPageIfNeeded();
 	}
-	
+
 	componentDidMount() {
 		this.loadPageIfNeeded();
 	}
@@ -37,7 +37,6 @@ class TextPage extends Component {
 	}
 
 	render() {
-		debugger;
 		if (!this.props.textPage.loaded) {
 			return (<div>Загрузка</div>);
 		}
