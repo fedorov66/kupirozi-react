@@ -767,10 +767,20 @@ label:hover:before {
 
 .filters-group {
 	display: flex;
+  align-items: center;
 }
 
 .filters-group .filter:first-child {
 	margin-right: 30px;
+}
+
+.filters-group .filter-select {
+    display: flex;
+    align-items: center;
+}
+
+.filters-group .filter-select .custom-select  {
+    margin-left: 10px;
 }
 
 

@@ -1,4 +1,4 @@
-﻿import React, { Component } from 'react';
+import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import CatalogueActions from '../../actions/CatalogueActions';
 import {reactLocalStorage} from 'reactjs-localstorage';
@@ -19,16 +19,16 @@ class Option extends Component {
 	constructor(props) {
 		super(props);
 	}
-	
+
 	render() {
 		return (<option value={this.props.value}>{this.props.caption}</option>);
 	}
 }
 
 class FilterSelect extends Component {
-	
+
 	constructor(props) {
-		super(props);	
+		super(props);
 		this.state = {
 			sortBy: 'PRICE'
 		};
@@ -44,7 +44,7 @@ class FilterSelect extends Component {
 		];
 		this.handleChange = this.handleChange.bind(this);
 	}
-	
+
 	handleChange(e) {
 		const value = e.currentTarget.querySelector('option:checked').value;
 		this.setState(Object.assign({}, { sortBy: value }));
@@ -53,7 +53,7 @@ class FilterSelect extends Component {
 
 	render() {
 		return (
-			<div className="filter">
+			<div className="filter filter-select">
 				<label>{this.props.caption}</label> <SelectControl parent={this} options={this.options} />
 			</div>
 		);
